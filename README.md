@@ -75,10 +75,12 @@ public class numberArray06 {
     ```
 * **Question 3:** Change the display statement in step 4 to the following: System.out.println("numbers[" + i + "] = " + numbers[i] + ", doubled = " + (numbers[i] * 2)); What is the output of the program? Explain the meaning of the statement.
   * **Answer:**
-    **numbers[0] = 5, doubled = 10**
-    **numbers[1] = 13, doubled = 26**
-    **numbers[2] = -7, doubled = -14**
-    **numbers[3] = 17, doubled = 34**
+    ```
+    numbers[0] = 5, doubled = 10
+    numbers[1] = 13, doubled = 26
+    numbers[2] = -7, doubled = -14
+    numbers[3] = 17, doubled = 34
+    ```
     
 * **Question 4:** If the condition in the for loop above is changed to i <= 4, what is the output of the program? Why?   
   * **Answer:**
