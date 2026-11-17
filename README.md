@@ -162,7 +162,9 @@ public class averageScoreArray06 {
   * **Answer:** true makes the loop repeat indefinitely unless it is exited another way, such as with the break statement.
 
 ### 3.4. Experiment 4: Simple Searching and Sorting
-#### 3.4.1 Java Code
+
+#### 3.4.1 Part A — Linear Search
+#### Java Code
 ```java
 public class scoreSearch06 {
     public static void main(String[] args) {
@@ -183,7 +185,35 @@ public class scoreSearch06 {
 }
 ```
 
-#### 3.4.2 Screenshot Output
+#### Screenshot Output
+
+![Example Image of Experiment 4 Output](/coffeeCust.png)
+
+#### 3.4.2 Part B — Bubble Sort 
+#### Java Code
+```java
+import java.util.Arrays;
+
+public class scoreShort06 {
+    public static void main(String[] args) {
+        int[] scores = {78, 65, 90, 55, 88, 72};
+
+        for (int i = 0; i < scores.length - 1; i++) {
+            for (int j = 0; j < scores.length - 1 - i; j++) {
+                if (scores[j] > scores[j + 1]) {
+                    int temp = scores[j];
+                    scores[j] = scores[j + 1];
+                    scores[j + 1] = temp;
+                }
+            }
+        }
+
+        System.out.println(Arrays.toString(scores));
+    }
+}
+```
+
+#### Screenshot Output
 
 ![Example Image of Experiment 4 Output](/coffeeCust.png)
 
