@@ -47,14 +47,39 @@ public class numberArray06 {
 
 #### 3.1.2 Screenshot Output
 
-![Example Image of Experiment 1 Output](/StudentScore.png)
+![Example Image of Experiment 1 Output](/numberarray.png)
 
 #### 3.1.3 Questions
-* **Question 1:** If the elements of the numbers array are changed to 5.0, 12867, 7.5, 2000000, what happens? Why does this happen? 
+* **Question 1:** If the elements of the numbers array are changed to 5.0, 12867, 7.5, 2000000, what happens? Why does this happen?
+   * **Answer:** The program will not compile if numbers is still an int[] and you assign 5.0 or 7.5. Those are double literals, and Java does not automatically narrow them to integers because that could lose the fractional part. The other values, 12867 and 2000000, are valid int values. If you need to keep the decimal values, declare the array as double[]; Java will convert the integer values to doubles as well.
 * **Question 2:** Modify the program above by initializing the array elements at the same time the array is declared (without new int[4] and without filling the elements one by one).  
-  * **Answer:** The variable highest is initialized to 0 and lowest to 100 because the program is designed to read scores that are expected to be in the range of 0 to 100. This way, the first score entered will automatically replace these starting values if it is higher or lower than them. If highest were initialized to 100 and lowest to 0, the program would start with the wrong comparison values, so it could fail to detect the actual maximum and minimum correctly, and the final output would be wrong.
+  * **Answer:**
+    ```
+    import java.util.Arrays;
+
+    public class numberArray06 {
+        public static void main(String[] args) {
+            int[] numbers = {5, 13, -7, 17};
+
+            for (int i = 0; i < numbers.length; i++) {
+                System.out.println("numbers[" + i + "] = " + numbers[i]);
+            }
+
+            for (int number : numbers) {
+                System.out.println(number);
+            }
+
+            System.out.println(Arrays.toString(numbers));
+        }
+    }
+    ```
 * **Question 3:** Change the display statement in step 4 to the following: System.out.println("numbers[" + i + "] = " + numbers[i] + ", doubled = " + (numbers[i] * 2)); What is the output of the program? Explain the meaning of the statement.
-  * **Answer:** This snippet compares each entered score with the current highest and lowest values. If score > highest, then the score is larger than the previous maximum, so it replaces highest with the new value. If score < lowest, then the score is smaller than the previous minimum, so it replaces lowest with the new value. In other words, this code continuously updates the highest and lowest scores as new values are entered, so after all inputs are processed, the variables store the maximum and minimum scores from the set.
+  * **Answer:**
+    **numbers[0] = 5, doubled = 10
+      numbers[1] = 13, doubled = 26
+      numbers[2] = -7, doubled = -14
+      numbers[3] = 17, doubled = 34**
+    
 * **Question 4:** If the condition in the for loop above is changed to i <= 4, what is the output of the program? Why?   
   * **Answer:**
 * **Question 5:** What is the difference between displaying an array using a for loop, a foreach loop, and Arrays.toString() in step 5? When should each one be used? 
@@ -85,7 +110,7 @@ public class scoreArray06 {
     }
 }
 ```
-![Example Image of Experiment 2 Output](/siakadwhile.png)
+![Example Image of Experiment 2 Output](/scorearray.png)
 
 
 
@@ -151,7 +176,7 @@ public class averageScoreArray06 {
 
 #### 3.3.2 Screenshot Output
 
-![Example Image of Experiment 3 Output](/coffeeCust.png)
+![Example Image of Experiment 3 Output](/average.png)
 
 #### 3.3.3 Questions
 * **Question 1:** Modify the code above so that it displays the number of students who passed, that is, students whose score is greater than 70 (> 70). 
@@ -187,7 +212,7 @@ public class scoreSearch06 {
 
 #### Screenshot Output
 
-![Example Image of Experiment 4 Output](/coffeeCust.png)
+![Example Image of Experiment 4 Output](/linear.png)
 
 #### 3.4.2 Part B — Bubble Sort 
 #### Java Code
@@ -215,7 +240,7 @@ public class scoreShort06 {
 
 #### Screenshot Output
 
-![Example Image of Experiment 4 Output](/coffeeCust.png)
+![Example Image of Experiment 4 Output](/bubble.png)
 
 #### 3.4.3 Questions
 * **Question 1:** Explain the meaning of the break; statement in the Part A code above!  
@@ -319,7 +344,7 @@ public class managingScore06 {
     }
 }
 ```
-![](/ticketSaler.png)
+![](/managing.png)
 
 ### 4.2 Task 2 Code Implementation
 ```java
@@ -390,7 +415,7 @@ public class campusCafeApp {
     }
 }
 ```
-![](/parking.png)
+![](/campuscafe.png)
 
 ---
 
