@@ -218,82 +218,145 @@ The following is a list of tasks performed on this Jobsheet:
 
 • Display all of the scores entered, along with their pass/fail status (PASS / FAIL).
       
-- [x] **Task 2:** Refer to the following flowchart!
-      
-![](/flowchart.png)
+- [x] **Task 2:** Write a program that can manage food and beverage orders at a campus café. The program provides a predefined menu list, allows users to select menu items through a search feature, records orders, and calculates the total cost. 
+Café menu list (initialize an array of String at declaration):
+```
+String[] menu = {"Fried Rice", "Fried Noodles", "Toast", "French Fries", "Pulled 
+Tea", "Cappuccino", "Chocolate Ice"}; 
+int[] prices = {15000, 13000, 10000, 12000, 8000, 18000, 20000};
+```
 
-A parking lot operator wants to create a program to calculate the total parking fees of several vehicles. The parking rate is Rp 3,000 per hour for cars and Rp 2,000 per hour for motorcycles. The program keeps asking for input as long as the input is not 0. Implement the flowchart as a Java program! 
+The program you write must meet the following requirements: 
 
-### 3.1 Task 1 Code Implementation
+• Menu search feature: the user enters the name of the food or beverage they want to order, and the program searches for that name in the menu array using the linear search algorithm. If it is found, display its price; if it is not found, inform the user that the menu item is not available. 
+
+• Ordering feature: the user enters the number of items to order, then for each item selects a menu name (which must be validated to ensure it exists in the menu list). Store the names of the ordered items in a one-dimensional array that is separate from the main menu array. 
+
+• Calculate and display the total cost of all of the orders entered by the user. 
+
+• Display the list of orders that have been made, along with the total cost, in a neat and easy-to-read format. 
+
+### 4.1 Task 1 Code Implementation
 
 ```java
 import java.util.Scanner;
 
-public class ticketSale {
+public class managingScore06 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int TICKET_PRICE = 50000;
-        int customerCount, totalTickets = 0;
-        double totalRevenue = 0;
+        Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter the number of customers: ");
-        customerCount = sc.nextInt();
+        System.out.print("Enter the number of student scores: ");
+        int count = input.nextInt();
 
-        for (int i = 1; i <= customerCount; i++) {
-            int quantity;
-            do {
-                System.out.print("Enter the number of tickets for customer " + i + ": ");
-                quantity = sc.nextInt();
-                if (quantity < 0) {
-                    System.out.println("Invalid quantity. Please enter a non-negative number.");
-                }
-            } while (quantity < 0);
-
-            double discountRate = 0;
-            if (quantity > 10) {
-                discountRate = 0.15;
-            } else if (quantity > 4) {
-                discountRate = 0.10;
-            }
-
-            totalTickets += quantity;
-            totalRevenue += quantity * TICKET_PRICE * (1 - discountRate);
+        if (count <= 0) {
+            System.out.println("The number of scores must be greater than 0.");
+            input.close();
+            return;
         }
-        System.out.println("Total tickets sold: " + totalTickets);
-        System.out.printf("Total ticket sales revenue: Rp %.0f%n", totalRevenue);
+
+        int[] scores = new int[count];
+        long total = 0;
+
+        for (int i = 0; i < scores.length; i++) {
+            System.out.print("Enter score for student #" + (i + 1) + ": ");
+            scores[i] = input.nextInt();
+            total += scores[i];
+        }
+
+        int highest = scores[0];
+        int lowest = scores[0];
+
+        for (int score : scores) {
+            if (score > highest) {
+                highest = score;
+            }
+            if (score < lowest) {
+                lowest = score;
+            }
+        }
+        
+        double average = (double) total / scores.length;
+
+        System.out.println("\nAverage score: " + average);
+        System.out.println("Highest score: " + highest);
+        System.out.println("Lowest score: " + lowest);
+        System.out.println("Scores and status:");
+
+        for (int i = 0; i < scores.length; i++) {
+            String status = scores[i] > 70 ? "PASS" : "FAIL";
+            System.out.println("Student #" + (i + 1) + ": " + scores[i] + " (" + status + ")");
+        }
     }
 }
 ```
 ![](/ticketSaler.png)
 
-### 3.2 Task 2 Code Implementation
+### 4.2 Task 2 Code Implementation
 ```java
 import java.util.Scanner;
 
-public class motorcycle {
+public class campusCafeApp {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int type, duration, total = 0;
+        Scanner input = new Scanner(System.in);
 
-        do {
-            System.out.print("Enter vehicle type (1=Car, 2=Motorcycle, 0=Exit): ");
-            type = sc.nextInt();
+        String[] menu = {
+            "Fried Rice", "Fried Noodles", "Toast", "French Fries",
+            "Pulled Tea", "Cappuccino", "Chocolate Ice"
+        };
+        int[] prices = {15000, 13000, 10000, 12000, 8000, 18000, 20000};
 
-            if (type == 1 || type == 2) {
-                System.out.print("Enter parking duration in hours: ");
-                duration = sc.nextInt();
+        System.out.println("Campus Cafe Menu:");
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println(menu[i] + " - " + prices[i]);
+        }
 
-                if (type == 1) {
-                    total += duration * 3000;
-                } else {
-                    total += duration * 2000;
+        System.out.print("\nEnter the number of items to order: ");
+        int itemCount = input.nextInt();
+        input.nextLine();
+
+        if (itemCount <= 0) {
+            System.out.println("The number of items must be greater than 0.");
+            input.close();
+            return;
+        }
+
+        String[] orders = new String[itemCount];
+        int totalCost = 0;
+
+        for (int i = 0; i < orders.length; i++) {
+            while (true) {
+                System.out.print("Enter menu item #" + (i + 1) + ": ");
+                String itemName = input.nextLine().trim();
+                int menuIndex = findMenuItem(menu, itemName);
+
+                if (menuIndex != -1) {
+                    orders[i] = menu[menuIndex];
+                    totalCost += prices[menuIndex];
+                    System.out.println(orders[i] + " - " + prices[menuIndex]);
+                    break;
                 }
-            } else if (type != 0) {
-                System.out.println("Invalid vehicle type. Please enter 1, 2, or 0.");
-            }
-        } while (type != 0);
 
-        System.out.println("Total parking fee: Rp " + total);
+                System.out.println("That menu item is not available. Please try again.");
+            }
+        }
+
+        System.out.println("\nOrder Summary:");
+        for (int i = 0; i < orders.length; i++) {
+            int menuIndex = findMenuItem(menu, orders[i]);
+            System.out.println((i + 1) + ". " + orders[i] + " - " + prices[menuIndex]);
+        }
+        System.out.println("Total cost: " + totalCost);
+
+        input.close();
+    }
+
+    private static int findMenuItem(String[] menu, String itemName) {
+        for (int i = 0; i < menu.length; i++) {
+            if (menu[i].equalsIgnoreCase(itemName)) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 ```
