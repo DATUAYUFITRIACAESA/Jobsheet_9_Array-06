@@ -87,11 +87,12 @@ public class numberArray06 {
 
 Use i < numbers.length to stop at the last valid index.
 * **Question 5:** What is the difference between displaying an array using a for loop, a foreach loop, and Arrays.toString() in step 5? When should each one be used? 
-  * **Answer:** Indexed for loop: Gives access to the index and value. Use it when you need the position, want to update array elements, or need to control which indexes are processed.
+  * **Answer:**
+-Indexed for loop: Gives access to the index and value. Use it when you need the position, want to update array elements, or need to control which indexes are processed.
     
-Foreach loop: Processes each value without managing indexes. Use it when you simply need to read or process every element.
+-Foreach loop: Processes each value without managing indexes. Use it when you simply need to read or process every element.
 
-Arrays.toString(numbers): Prints the whole array in a compact format, such as [5, 13, -7, 17]. Use it for quick display or debugging when you do not need custom formatting per element.
+-Arrays.toString(numbers): Prints the whole array in a compact format, such as [5, 13, -7, 17]. Use it for quick display or debugging when you do not need custom formatting per element.
 
 
 ---
