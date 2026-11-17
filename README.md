@@ -83,9 +83,15 @@ public class numberArray06 {
     ```
     
 * **Question 4:** If the condition in the for loop above is changed to i <= 4, what is the output of the program? Why?   
-  * **Answer:**
+  * **Answer:** The array has four elements, with valid indexes 0 through 3. The loop runs for i = 0, 1, 2, and 3, printing those values. When i becomes 4, numbers[4] is out of bounds, so Java throws an ArrayIndexOutOfBoundsException. The foreach loop and Arrays.toString() are not reached.
+
+Use i < numbers.length to stop at the last valid index.
 * **Question 5:** What is the difference between displaying an array using a for loop, a foreach loop, and Arrays.toString() in step 5? When should each one be used? 
-  * **Answer:**
+  * **Answer:** Indexed for loop: Gives access to the index and value. Use it when you need the position, want to update array elements, or need to control which indexes are processed.
+    
+Foreach loop: Processes each value without managing indexes. Use it when you simply need to read or process every element.
+
+Arrays.toString(numbers): Prints the whole array in a compact format, such as [5, 13, -7, 17]. Use it for quick display or debugging when you do not need custom formatting per element.
 
 
 ---
